@@ -24,7 +24,7 @@ const projects = [
   {
     title: "Manual Book KAI WEB",
     description: "A productivity app for managing tasks and projects with team collaboration features.",
-    image: "/manualbook.png",
+    image: "/manualBook.png",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
     liveUrl: "https://manual-book-kai-accessagaaa.vercel.app/",
     githubUrl: "https://github.com/Agaajmd/manualBook-KAI_ACCESS",
@@ -32,7 +32,7 @@ const projects = [
   {
     title: "E-Commerce",
     description: "A store Take A Riz.",
-    image: "/Take A Riz.png",
+    image: "/Take A RIz.png",
     tags: ["Next.js", "TypeScript", "CSS", "Weather API"],
     liveUrl: "https://take-a-riz-e-commerce.vercel.app/",
     githubUrl: "https://github.com/Agaajmd/TakeARizStore",
