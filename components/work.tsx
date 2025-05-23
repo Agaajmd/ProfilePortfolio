@@ -14,20 +14,20 @@ const projects = [
     githubUrl: "https://github.com/Agaajmd/KAI-ACCESS",
   },
   {
-    title: "Photography Picture",
-    description: "A Picture i take.",
-    image: "/gartenhutte.png",
-    tags: ["Camera DsLR", "Photoshop", "Lightroom"],
-    liveUrl: "https://www.instagram.com/p/Cz3JDdfr_3j/?igsh=MXJlZmJjcWdhejl2Zw==",
-    githubUrl: "https://www.instagram.com/n.agaaa/?igsh=MW1yOGhkdmZjNjE3MA%3D%3D#",
-  },
-  {
     title: "Manual Book KAI WEB",
     description: "A productivity app for managing tasks and projects with team collaboration features.",
     image: "/manualBook.png",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
     liveUrl: "https://manual-book-kai-accessagaaa.vercel.app/",
     githubUrl: "https://github.com/Agaajmd/manualBook-KAI_ACCESS",
+  },
+  {
+    title: "System Order Online",
+    description: "A system for managing online orders and payments at the table.",
+    image: "/Afif coffe.png",
+    tags: ["next.js", "TypeScript", "Tailwind CSS"],
+    liveUrl: "https://afif-order-by-table.vercel.app/",
+    githubUrl: "https://github.com/Agaajmd",
   },
   {
     title: "E-Commerce",

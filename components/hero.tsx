@@ -80,7 +80,7 @@ export default function Hero() {
 
         {/* Animated arrow down */}
         <motion.div
-          className="absolute inset-x-0 bottom-10 flex justify-center"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.5, duration: 1 }}
@@ -98,11 +98,11 @@ export default function Hero() {
               className="text-primary"
             >
               <path
-          d="M12 5V19M12 19L19 12M12 19L5 12"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+                d="M12 5V19M12 19L19 12M12 19L5 12"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </motion.div>
