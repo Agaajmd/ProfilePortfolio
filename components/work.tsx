@@ -30,6 +30,14 @@ const projects = [
     githubUrl: "https://github.com/Agaajmd",
   },
   {
+    title: "Cafe Order by Table",
+    description: "A system for admin and user managing online orders and payments at the table.",
+    image: "/Afif Cafe.png",
+    tags: ["next.js", "TypeScript", "Tailwind CSS"],
+    liveUrl: "https://afif-coffee.vercel.app/",
+    githubUrl: "https://github.com/Agaajmd",
+  },
+  {
     title: "E-Commerce",
     description: "A store Take A Riz.",
     image: "/Take A RIz.png",
