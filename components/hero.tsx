@@ -39,7 +39,7 @@ export default function Hero() {
           </motion.span>
         </motion.div>
 
-        <div className="mb-6 text-4xl font-bold leading-tight md:text-6xl">
+        <div className="mb-6 text-3xl font-bold leading-tight sm:text-4xl md:text-6xl">
           <AnimatedText text="Hi! My Name is" type="bounce" />
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -47,7 +47,15 @@ export default function Hero() {
             transition={{ delay: 0.8, duration: 0.8, type: "spring" }}
             className="mt-2 text-primary"
           >
-            <AnimatedText text="Nur Jagad Muhammad Dani" type="chars" delay={1} />
+            <AnimatedText 
+              text={[
+          "Nur Jagad",
+          "Muhammad Dani"
+              ].join(" ")} 
+              type="chars" 
+              delay={1}
+              className="whitespace-pre-line" 
+            />
           </motion.div>
         </div>
 
