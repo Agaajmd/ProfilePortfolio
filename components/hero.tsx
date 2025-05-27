@@ -47,15 +47,7 @@ export default function Hero() {
             transition={{ delay: 0.8, duration: 0.8, type: "spring" }}
             className="mt-2 text-primary"
           >
-            <AnimatedText 
-              text={[
-          "Nur Jagad",
-          "Muhammad Dani"
-              ].join(" ")} 
-              type="chars" 
-              delay={1}
-              className="whitespace-pre-line" 
-            />
+            <AnimatedText text="Nur Jagad Muhammad Dani" type="chars" delay={1} />
           </motion.div>
         </div>
 
@@ -86,35 +78,7 @@ export default function Hero() {
           </motion.a>
         </motion.div>
 
-        {/* Animated arrow down */}
-        <motion.div
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.5, duration: 1 }}
-        >
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5, ease: "easeInOut" }}
-          >
-            <svg
-              width="40"
-              height="40"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="text-primary"
-            >
-              <path
-                d="M12 5V19M12 19L19 12M12 19L5 12"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </motion.div>
-        </motion.div>
+      
       </div>
     </section>
   )
