@@ -6,10 +6,18 @@ import AnimatedCard from "./animated-card"
 
 const projects = [
   {
+    title: "Aga Game Station",
+    description: "A fully responsive booking system, built with Next.js and Tailwind CSS.",
+    image: "/agagameS.png",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+    liveUrl: "https://aga-game-station02.vercel.app/",
+    githubUrl: "https://github.com/Agaajmd/",
+  },
+  {
     title: "KAI Website",
     description: "A fully responsive e-commerce platform built with Next.js and Tailwind CSS.",
     image: "/kai.png",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Stripe"],
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma"],
     liveUrl: "https://kai-access-betaaga.vercel.app/",
     githubUrl: "https://github.com/Agaajmd/KAI-ACCESS",
   },
@@ -17,7 +25,7 @@ const projects = [
     title: "Manual Book KAI WEB",
     description: "A productivity app for managing tasks and projects with team collaboration features.",
     image: "/manualBook.png",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
+    tags: ["HTML", "CSS"],
     liveUrl: "https://manual-book-kai-accessagaaa.vercel.app/",
     githubUrl: "https://github.com/Agaajmd/manualBook-KAI_ACCESS",
   },
@@ -90,3 +98,4 @@ export default function Work() {
     </section>
   )
 }
+
