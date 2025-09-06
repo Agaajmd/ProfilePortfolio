@@ -58,19 +58,28 @@ export default function Navbar() {
       }}
     >
       <div
-        className={`${
-          isScrolled
-            ? "max-w-screen-xl mx-auto mx-3 sm:mx-4 md:mx-6 lg:mx-8 mt-3 sm:mt-4 h-12 sm:h-14 rounded-full border backdrop-blur supports-[backdrop-filter]:bg-white/20 bg-white/30 dark:bg-slate-900/30 border-black/10 dark:border-white/10 shadow-lg"
-            : "w-full h-16"
-        } pointer-events-auto transition-all duration-300`}
+        className={`w-full pointer-events-auto transition-all duration-300`}
       >
-        <div
+        <motion.div
+          layout
+          initial={false}
+          animate={isScrolled ? { scale: 1 } : { scale: 1 }}
+          transition={{ type: "spring", stiffness: 220, damping: 26 }}
           className={`${
             isScrolled
-              ? "flex h-full items-center justify-between px-3 sm:px-4"
-              : "container mx-auto flex h-full items-center justify-between px-4"
-          }`}
+              ? "max-w-screen-xl mx-4 mt-3 sm:mt-4 h-12 sm:h-14 rounded-full border backdrop-blur supports-[backdrop-filter]:bg-white/20 bg-white/30 dark:bg-slate-900/30 border-black/10 dark:border-white/10 shadow-lg"
+              : "h-16"
+          } transition-[background-color,backdrop-filter,box-shadow,border-radius,height,margin] duration-300 ease-out`}
         >
+          <motion.div
+            layout
+            transition={{ type: "spring", stiffness: 280, damping: 30 }}
+            className={`${
+              isScrolled
+                ? "flex h-full items-center justify-between px-3 sm:px-4"
+                : "container mx-auto flex h-full items-center justify-between px-4"
+            }`}
+          >
           <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -172,7 +181,8 @@ export default function Navbar() {
             </AnimatePresence>
           </motion.button>
           </motion.div>
-        </div>
+          </motion.div>
+        </motion.div>
   </div>
 
       {/* Mobile Navigation Menu */}
@@ -198,17 +208,14 @@ export default function Navbar() {
             }}
             className="md:hidden pointer-events-auto"
           >
-            <nav
-              className={`${
-                isScrolled
-                  ? "max-w-screen-xl mx-auto mx-3 sm:mx-4 md:mx-6 lg:mx-8"
-                  : "container mx-auto"
-              } px-4 py-3 mt-2 rounded-2xl border shadow-lg backdrop-blur supports-[backdrop-filter]:bg-white/20 ${
-                isScrolled
-                  ? "bg-white/30 dark:bg-slate-900/30 border-black/10 dark:border-white/10"
-                  : "bg-white/30 dark:bg-slate-900/30 border-black/5 dark:border-white/5"
-              } dark:[&_*]:text-foreground`}
-            >
+            <div className="max-w-screen-xl mx-4">
+              <nav
+                className={`px-4 py-3 mt-2 rounded-2xl border shadow-lg backdrop-blur supports-[backdrop-filter]:bg-white/20 ${
+                  isScrolled
+                    ? "bg-white/30 dark:bg-slate-900/30 border-black/10 dark:border-white/10"
+                    : "bg-white/30 dark:bg-slate-900/30 border-black/5 dark:border-white/5"
+                } dark:[&_*]:text-foreground`}
+              >
               <ul className="flex flex-col space-y-4">
                 {navLinks.map((link, index) => {
                   const isActive = activeSection === link.href.substring(1)
@@ -243,7 +250,8 @@ export default function Navbar() {
                   )
                 })}
               </ul>
-            </nav>
+              </nav>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

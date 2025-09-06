@@ -5,7 +5,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import { MotionConfig } from "framer-motion"
+import MotionProvider from "@/components/motion-provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -24,13 +24,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <MotionConfig reducedMotion="user">
+          <MotionProvider>
             <div className="flex min-h-screen flex-col bg-background text-foreground">
               <Navbar />
               {children}
               <Footer />
             </div>
-          </MotionConfig>
+          </MotionProvider>
         </ThemeProvider>
       </body>
     </html>
