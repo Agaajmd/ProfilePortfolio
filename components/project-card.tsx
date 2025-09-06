@@ -23,7 +23,7 @@ export default function ProjectCard({ title, description, image, tags, liveUrl, 
         rel="noopener noreferrer"
         className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
-        <div className="relative w-full aspect-[16/10]">
+        <div className="relative w-full aspect-[16/10] overflow-hidden">
           <Image
             src={image || "/placeholder.svg"}
             alt={title}
@@ -33,13 +33,14 @@ export default function ProjectCard({ title, description, image, tags, liveUrl, 
             decoding="async"
             className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.07] motion-reduce:transform-none"
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" />
-          {/* Subtle radial highlight for extra pop */}
-          <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" aria-hidden>
+          {/* Main black overlay that covers entire image on hover - follows image scaling */}
+          <div className="pointer-events-none absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 ease-out group-hover:scale-[1.07]" />
+          {/* Subtle radial highlight for extra pop - follows image scaling */}
+          <div className="pointer-events-none absolute inset-0 opacity-0 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-[1.07]" aria-hidden>
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.18),transparent_60%)] mix-blend-overlay" />
           </div>
           {/* Soft glow ring on hover */}
-          <div className="pointer-events-none absolute inset-0 rounded-xl ring-0 ring-primary/0 transition-all duration-300 ease-out group-hover:ring-2 group-hover:ring-primary/25" aria-hidden />
+          <div className="pointer-events-none absolute inset-0 ring-0 ring-primary/0 transition-all duration-300 ease-out group-hover:ring-2 group-hover:ring-primary/25" aria-hidden />
         </div>
       </a>
       <div className="p-4 sm:p-5">

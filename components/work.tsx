@@ -2,12 +2,13 @@
 
 import { useRef } from "react"
 import ProjectCard from "@/components/project-card"
+import PhotographyCarousel from "@/components/photography-carousel"
 
 const projects = [
   {
     title: "Aga Game Station",
     description: "A fully responsive booking system, built with Next.js and Tailwind CSS.",
-    image: "/agagameS.png",
+    image: "/WORK/agagameS.png",
     tags: ["Next.js", "TypeScript", "Tailwind CSS"],
     liveUrl: "https://aga-game-station02.vercel.app/",
     githubUrl: "https://github.com/Agaajmd/",
@@ -15,7 +16,7 @@ const projects = [
   {
     title: "KAI Website",
     description: "A fully responsive e-commerce platform built with Next.js and Tailwind CSS.",
-    image: "/kai.png",
+    image: "/WORK/kai.png",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma"],
     liveUrl: "https://kai-access-betaaga.vercel.app/",
     githubUrl: "https://github.com/Agaajmd/KAI-ACCESS",
@@ -23,7 +24,7 @@ const projects = [
   {
     title: "Manual Book KAI WEB",
     description: "A productivity app for managing tasks and projects with team collaboration features.",
-    image: "/manualBook.png",
+    image: "/WORK/manualBook.png",
     tags: ["HTML", "CSS"],
     liveUrl: "https://manual-book-kai-accessagaaa.vercel.app/",
     githubUrl: "https://github.com/Agaajmd/manualBook-KAI_ACCESS",
@@ -31,7 +32,7 @@ const projects = [
   {
     title: "System Order Online",
     description: "A system for managing online orders and payments at the table.",
-    image: "/Afif coffe.png",
+    image: "/WORK/Afif coffe.png",
     tags: ["next.js", "TypeScript", "Tailwind CSS"],
     liveUrl: "https://afif-order-by-table.vercel.app/",
     githubUrl: "https://github.com/Agaajmd",
@@ -39,7 +40,7 @@ const projects = [
   {
     title: "Cafe Order by Table",
     description: "A system for admin and user managing online orders and payments at the table.",
-    image: "/Afif Cafe.png",
+    image: "/WORK/Afif Cafe.png",
     tags: ["next.js", "TypeScript", "Tailwind CSS"],
     liveUrl: "https://afif-coffee.vercel.app/",
     githubUrl: "https://github.com/Agaajmd",
@@ -47,7 +48,7 @@ const projects = [
   {
     title: "E-Commerce",
     description: "A store Take A Riz.",
-    image: "/Take A RIz.png",
+    image: "/WORK/Take A RIz.png",
     tags: ["Next.js", "TypeScript", "CSS", "Weather API"],
     liveUrl: "https://take-a-riz-e-commerce.vercel.app/",
     githubUrl: "https://github.com/Agaajmd/TakeARizStore",
@@ -76,6 +77,13 @@ export default function Work() {
               githubUrl={project.githubUrl}
             />
           ))}
+        </div>
+
+        {/* Photography Section */}
+        <div className="mt-16 md:mt-20 mb-4 md:mb-6">
+          <h3 className="section-title">Photography</h3>
+          <p className="section-subtitle">Explore my photography collection</p>
+          <PhotographyCarousel />
         </div>
       </div>
     </section>
