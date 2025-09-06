@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
+import { useEffect, useMemo, useState } from "react"
+import { motion, useReducedMotion } from "framer-motion"
 
 interface AnimatedTextProps {
   text: string
@@ -22,6 +22,7 @@ export default function AnimatedText({
   const [inView, setInView] = useState(!once)
   const [displayText, setDisplayText] = useState("")
   const [currentIndex, setCurrentIndex] = useState(0)
+  const reduceMotion = useReducedMotion()
 
   useEffect(() => {
     if (!scope || !once) return
@@ -44,16 +45,17 @@ export default function AnimatedText({
   }, [scope, once])
 
   useEffect(() => {
-    if (type === "typewriter" && inView) {
+  if (type === "typewriter" && inView) {
       if (currentIndex < text.length) {
-        const timeout = setTimeout(() => {
+    const speed = reduceMotion ? 0 : 50
+    const timeout = setTimeout(() => {
           setDisplayText(text.substring(0, currentIndex + 1))
           setCurrentIndex(currentIndex + 1)
-        }, 50)
+    }, speed)
         return () => clearTimeout(timeout)
       }
     }
-  }, [currentIndex, inView, text, type])
+  }, [currentIndex, inView, text, type, reduceMotion])
 
   // Split text based on animation type
   const getAnimatedElements = () => {
@@ -128,8 +130,8 @@ export default function AnimatedText({
     visible: (i = 1) => ({
       opacity: 1,
       transition: {
-        staggerChildren: 0.06,
-        delayChildren: delay + 0.04 * i,
+        staggerChildren: reduceMotion ? 0 : 0.04,
+        delayChildren: delay + (reduceMotion ? 0 : 0.03) * i,
       },
     }),
   }
@@ -140,18 +142,18 @@ export default function AnimatedText({
       y: 0,
       transition: {
         type: "spring",
-        damping: 12,
-        stiffness: 200,
-        delay: i * 0.05,
+        damping: 16,
+        stiffness: 160,
+        delay: reduceMotion ? 0 : i * 0.03,
       },
     }),
     hidden: {
       opacity: 0,
-      y: 20,
+      y: 14,
       transition: {
         type: "spring",
-        damping: 12,
-        stiffness: 200,
+        damping: 16,
+        stiffness: 160,
       },
     },
   }
@@ -162,18 +164,18 @@ export default function AnimatedText({
       y: 0,
       transition: {
         type: "spring",
-        damping: 12,
-        stiffness: 200,
-        delay: i * 0.03,
+        damping: 16,
+        stiffness: 160,
+        delay: reduceMotion ? 0 : i * 0.02,
       },
     }),
     hidden: {
       opacity: 0,
-      y: 20,
+      y: 12,
       transition: {
         type: "spring",
-        damping: 12,
-        stiffness: 200,
+        damping: 16,
+        stiffness: 160,
       },
     },
   }
@@ -184,18 +186,18 @@ export default function AnimatedText({
       y: 0,
       transition: {
         type: "spring",
-        damping: 12,
-        stiffness: 200,
-        delay: i * 0.03,
+        damping: 16,
+        stiffness: 160,
+        delay: reduceMotion ? 0 : i * 0.02,
       },
     }),
     hidden: {
       opacity: 0,
-      y: 40,
+      y: 16,
       transition: {
         type: "spring",
-        damping: 12,
-        stiffness: 200,
+        damping: 16,
+        stiffness: 160,
       },
     },
   }
@@ -207,9 +209,9 @@ export default function AnimatedText({
       y: 0,
       transition: {
         type: "spring",
-        damping: 6,
-        stiffness: 300,
-        delay: i * 0.05,
+        damping: 14,
+        stiffness: 220,
+        delay: reduceMotion ? 0 : i * 0.03,
       },
     }),
   }

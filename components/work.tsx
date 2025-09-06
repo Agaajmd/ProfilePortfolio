@@ -1,8 +1,7 @@
 "use client"
 
 import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
-import AnimatedCard from "./animated-card"
+import ProjectCard from "./project-card"
 
 const projects = [
   {
@@ -56,33 +55,18 @@ const projects = [
 ]
 
 export default function Work() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.1 })
+  const ref = useRef<HTMLDivElement | null>(null)
+  const containerRef = useRef<HTMLDivElement | null>(null)
 
   return (
-    <section id="work" className="bg-secondary/30 dark:bg-secondary/10">
-      <div className="section-container" ref={ref}>
-        <motion.h2
-          className="section-title"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.5 }}
-        >
-          My Work
-        </motion.h2>
+  <section id="work" className="bg-secondary/30 dark:bg-secondary/10" ref={ref}>
+      <div className="section-container" ref={containerRef}>
+        <h2 className="section-title">My Work</h2>
+        <p className="section-subtitle">Check out some of my recent projects</p>
 
-        <motion.p
-          className="section-subtitle"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          Check out some of my recent projects
-        </motion.p>
-
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
-          {projects.map((project, index) => (
-            <AnimatedCard
+        <div className="grid grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:grid-cols-3 lg:gap-8">
+          {projects.map((project) => (
+            <ProjectCard
               key={project.title}
               title={project.title}
               description={project.description}
@@ -90,7 +74,6 @@ export default function Work() {
               tags={project.tags}
               liveUrl={project.liveUrl}
               githubUrl={project.githubUrl}
-              index={index}
             />
           ))}
         </div>

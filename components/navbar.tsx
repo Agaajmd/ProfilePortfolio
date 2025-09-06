@@ -47,9 +47,7 @@ export default function Navbar() {
 
   return (
     <motion.header
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-        isScrolled ? "bg-white/90 shadow-lg backdrop-blur-md dark:bg-slate-900/90" : "bg-transparent"
-      }`}
+      className={`fixed inset-x-0 top-0 z-50 w-full pointer-events-none transition-all duration-300`}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{
@@ -59,8 +57,21 @@ export default function Navbar() {
         damping: 20,
       }}
     >
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <motion.div
+      <div
+        className={`${
+          isScrolled
+            ? "max-w-screen-xl mx-auto mx-3 sm:mx-4 md:mx-6 lg:mx-8 mt-3 sm:mt-4 h-12 sm:h-14 rounded-full border backdrop-blur supports-[backdrop-filter]:bg-white/20 bg-white/30 dark:bg-slate-900/30 border-black/10 dark:border-white/10 shadow-lg"
+            : "w-full h-16"
+        } pointer-events-auto transition-all duration-300`}
+      >
+        <div
+          className={`${
+            isScrolled
+              ? "flex h-full items-center justify-between px-3 sm:px-4"
+              : "container mx-auto flex h-full items-center justify-between px-4"
+          }`}
+        >
+          <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
@@ -75,7 +86,7 @@ export default function Navbar() {
               Agaaa
             </motion.span>
           </Link>
-        </motion.div>
+          </motion.div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
@@ -123,7 +134,7 @@ export default function Navbar() {
         </nav>
 
         {/* Mobile Navigation Toggle */}
-        <motion.div
+          <motion.div
           className="flex items-center md:hidden"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -160,8 +171,9 @@ export default function Navbar() {
               )}
             </AnimatePresence>
           </motion.button>
-        </motion.div>
-      </div>
+          </motion.div>
+        </div>
+  </div>
 
       {/* Mobile Navigation Menu */}
       <AnimatePresence>
@@ -184,9 +196,19 @@ export default function Navbar() {
                 opacity: { duration: 0.2 },
               },
             }}
-            className="md:hidden"
+            className="md:hidden pointer-events-auto"
           >
-            <nav className="container mx-auto bg-white/95 px-4 py-4 backdrop-blur-md dark:bg-slate-900/95">
+            <nav
+              className={`${
+                isScrolled
+                  ? "max-w-screen-xl mx-auto mx-3 sm:mx-4 md:mx-6 lg:mx-8"
+                  : "container mx-auto"
+              } px-4 py-3 mt-2 rounded-2xl border shadow-lg backdrop-blur supports-[backdrop-filter]:bg-white/20 ${
+                isScrolled
+                  ? "bg-white/30 dark:bg-slate-900/30 border-black/10 dark:border-white/10"
+                  : "bg-white/30 dark:bg-slate-900/30 border-black/5 dark:border-white/5"
+              } dark:[&_*]:text-foreground`}
+            >
               <ul className="flex flex-col space-y-4">
                 {navLinks.map((link, index) => {
                   const isActive = activeSection === link.href.substring(1)
