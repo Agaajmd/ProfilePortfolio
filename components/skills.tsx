@@ -5,11 +5,11 @@ import { motion, useInView } from "framer-motion"
 import AnimatedSkillBar from "./animated-skill-bar"
 
 const skills = [
-  { name: "HTML", level: 90 },
+  { name: "HTML", level: 85 },
   { name: "CSS", level: 85 },
   { name: "JavaScript", level: 80 },
-  { name: "TypeScript", level: 75 },
-  { name: "React", level: 85 },
+  { name: "TypeScript", level: 90 },
+  { name: "React", level: 95 },
   { name: "Next.js", level: 95 },
   { name: "Tailwind CSS", level: 90 },
   { name: "Photography", level: 95 },

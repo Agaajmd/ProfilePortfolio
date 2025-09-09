@@ -49,7 +49,7 @@ const projects = [
     title: "E-Commerce",
     description: "A store Take A Riz.",
     image: "/WORK/Take A RIz.png",
-    tags: ["Next.js", "TypeScript", "CSS", "Weather API"],
+    tags: ["Next.js", "TypeScript", "CSS"],
     liveUrl: "https://take-a-riz-e-commerce.vercel.app/",
     githubUrl: "https://github.com/Agaajmd/TakeARizStore",
   },
