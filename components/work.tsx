@@ -10,7 +10,7 @@ const projects = [
     description: "A fully responsive booking system, built with Next.js and Tailwind CSS.",
     image: "/WORK/agagameS.png",
     tags: ["Next.js", "TypeScript", "Tailwind CSS"],
-    liveUrl: "https://aga-game-station02.vercel.app/",
+    liveUrl: "https://aga-game-station.vercel.app/",
     githubUrl: "https://github.com/Agaajmd/",
   },
   {
