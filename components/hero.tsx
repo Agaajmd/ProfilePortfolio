@@ -78,10 +78,12 @@ export default function Hero() {
             </span>
           </motion.a>
 
-          {/* Download CV - using exact path with URL encoding for spaces */}
+          {/* Download CV */}
           <motion.a
-            href={encodeURI("/CV/Agaaa Professional CV.pdf")}
-            download
+            href="/CV/Agaaa%20Profesional%20CV.pdf"
+            download="Agaaa_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
