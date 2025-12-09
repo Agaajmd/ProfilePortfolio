@@ -161,131 +161,66 @@ export default function PhotographyCarousel() {
       aria-label="Photography Carousel"
     >
       {/* Container with proper left/right margins for carousel */}
-      <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 overflow-visible max-w-7xl">
-        <div className="relative w-full">
-          <Carousel 
-            orientation="horizontal" 
-            opts={{ 
-              loop: true,
-              duration: 800,
-              dragFree: isMobile,
-            }} 
-            className="h-[400px] sm:h-[450px] md:h-[500px] lg:h-[550px] w-full" 
-            setApi={setApi}
-          >
-          {/* Main container with overflow visible for peek effect */}
-          <div className="relative h-full overflow-visible rounded-3xl">
-            {/* Invisible Embla content for navigation */}
-            <CarouselContent className="h-full opacity-0 pointer-events-none">
-              {photos.map((_, i) => (
-                <CarouselItem key={`embla-${i}`} className="h-full" />
-              ))}
-            </CarouselContent>
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 overflow-visible max-w-7xl">
+        <Carousel 
+          orientation="horizontal" 
+          opts={{ 
+            loop: true,
+            duration: 800,
+            align: "center",
+            dragFree: false,
+            watchDrag: true,
+          }} 
+          className="w-full touch-pan-x" 
+          setApi={setApi}
+        >
+          <CarouselContent className="-ml-2 md:-ml-4 touch-pan-x">
+            {photos.map((src, i) => {
+              const isCenter = i === selectedIndex
 
-            {/* Card carousel with preview container */}
-            <div 
-              className="absolute inset-0 flex items-center justify-center overflow-visible"
-              onPointerDown={handlePointerDown}
-              onPointerMove={handlePointerMove}
-              onPointerUp={handlePointerUp}
-              style={{ 
-                touchAction: isMobile ? "pan-x" : "none",
-                overflowX: "visible", // Ensure carousel doesn't create horizontal scroll
-              }}
-            >
-              {/* Cards container with closer spacing */}
-              <div className="relative flex items-center justify-center gap-1 sm:gap-2 md:gap-3 lg:gap-4 overflow-visible">
-                {Array.from({ length: VISIBLE_CARDS }).map((_, idx) => {
-                  const offset = idx - Math.floor(VISIBLE_CARDS / 2)
-                  const photoIndex = (selectedIndex + offset + slidesCount) % slidesCount
-                  const isCenter = offset === 0
-                  const absOffset = Math.abs(offset)
-                  
-                  // Enhanced scaling for closer appearance
-                  const scale = isCenter ? 1 : 0.85 // Larger side cards for closer feel
-                  const opacity = isCenter ? 1 : 0.75 // Higher opacity for side cards
-                  const zIndex = isCenter ? 20 : 10 - absOffset
-                  
-                  // Responsive card sizes with larger center card
-                  const cardSizes = isMobile 
-                    ? { width: 280, height: 210 } 
-                    : { width: 400, height: 300 }
-                  
-                  const centerCardSizes = isMobile
-                    ? { width: 380, height: 285 } // Increased mobile center size
-                    : { width: 560, height: 420 } // Increased desktop center size significantly
-
-                  return (
+              return (
+                <CarouselItem 
+                  key={`card-${i}`} 
+                  className="pl-2 md:pl-4 basis-[85%] sm:basis-[70%] md:basis-[60%] lg:basis-[45%]"
+                >
+                  <div
+                    className={`relative cursor-pointer transition-all duration-500 ease-out ${
+                      isCenter ? "scale-100" : "scale-90"
+                    }`}
+                    onClick={() => handleCardClick(i)}
+                  >
                     <div
-                      key={`card-${idx}`}
-                      className={`relative cursor-pointer transition-all duration-500 ease-out ${
-                        isCenter ? "z-20" : "z-10"
+                      className={`relative w-full aspect-[4/3] overflow-hidden shadow-2xl transition-all duration-500 ${
+                        isCenter
+                          ? "ring-2 ring-primary/60 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
+                          : "rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.08)] hover:shadow-xl opacity-80"
                       }`}
-                      style={{
-                        transform: `scale(${scale})`,
-                        opacity,
-                        zIndex,
-                      }}
-                      onClick={() => handleCardClick(photoIndex)}
                     >
-                      <div
-                        className={`relative overflow-hidden shadow-2xl transition-all duration-500 hover:scale-105 ${
-                          isCenter
-                            ? "ring-2 ring-primary/60 shadow-primary/30 rounded-3xl shadow-[0_0_30px_rgba(59,130,246,0.4),0_0_60px_rgba(59,130,246,0.2),0_0_90px_rgba(59,130,246,0.1)]"
-                            : "rounded-2xl hover:shadow-xl"
+                      <Image
+                        src={src}
+                        alt={`Photography ${i + 1}`}
+                        fill
+                        className={`object-cover transition-all duration-500 ${
+                          isCenter ? "rounded-3xl" : "rounded-2xl"
                         }`}
-                        style={{
-                          width: isCenter ? centerCardSizes.width : cardSizes.width,
-                          height: isCenter ? centerCardSizes.height : cardSizes.height,
-                          ...(isCenter && {
-                            background: 'linear-gradient(45deg, rgba(59,130,246,0.1), rgba(147,51,234,0.1))',
-                            backgroundClip: 'padding-box',
-                          })
-                        }}
-                      >
-                        {/* Animated glowing border for center card */}
-                        {isCenter && (
-                          <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 p-[2px] animate-pulse">
-                            <div className="h-full w-full rounded-3xl bg-transparent" />
-                          </div>
-                        )}
-                        <Image
-                          src={photos[photoIndex]}
-                          alt={`Photography ${photoIndex + 1}`}
-                          fill
-                          className={`object-cover transition-all duration-500 relative z-10 ${
-                            isCenter ? "rounded-3xl" : "rounded-2xl"
-                          }`}
-                          sizes={isCenter 
-                            ? isMobile ? "380px" : "560px"
-                            : isMobile ? "280px" : "400px"
-                          }
-                          unoptimized
-                          priority={idx < 3}
-                          onError={(e) => {
-                            console.log('Image failed to load:', photos[photoIndex]);
-                          }}
-                        />
-                        
-                        {/* Overlay for non-center cards */}
-                        {!isCenter && (
-                          <div className="absolute inset-0 bg-black/20 transition-all duration-500 hover:bg-black/10" />
-                        )}
-                      </div>
+                        sizes="(max-width: 640px) 85vw, (max-width: 768px) 70vw, (max-width: 1024px) 60vw, 45vw"
+                        unoptimized
+                        priority={i < 3}
+                      />
+
+                      {!isCenter && (
+                        <div className="absolute inset-0 bg-black/20 transition-all duration-500 hover:bg-black/10" />
+                      )}
                     </div>
-                  )
-                })}
-              </div>
-            </div>
-          </div>
+                  </div>
+                </CarouselItem>
+              )
+            })}
+          </CarouselContent>
         </Carousel>
-        </div>
       </div>
 
       {/* Instructions */}
-      <div className="mt-2 text-center text-sm text-muted-foreground">
-        <p>{isMobile ? "Swipe left/right to navigate" : "Click cards or use left/right arrow keys to navigate"}</p>
-      </div>
     </div>
   )
 }

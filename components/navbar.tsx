@@ -66,8 +66,8 @@ export default function Navbar() {
           animate={isScrolled ? { scale: 1 } : { scale: 1 }}
           transition={{ type: "spring", stiffness: 220, damping: 26 }}
           className={`${
-            isScrolled
-              ? "max-w-screen-xl mx-4 mt-3 sm:mt-4 h-12 sm:h-14 rounded-full border backdrop-blur supports-[backdrop-filter]:bg-white/20 bg-white/30 dark:bg-slate-900/30 border-black/10 dark:border-white/10 shadow-lg"
+              isScrolled
+                ? "max-w-screen-xl mx-3 sm:mx-auto mt-3 sm:mt-4 h-12 sm:h-14 rounded-full border backdrop-blur supports-[backdrop-filter]:bg-white/20 bg-white/30 dark:bg-slate-900/30 border-black/10 dark:border-white/10 shadow-lg"
               : "h-16"
           } transition-[background-color,backdrop-filter,box-shadow,border-radius,height,margin] duration-300 ease-out`}
         >
