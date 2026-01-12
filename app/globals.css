@@ -56,6 +56,21 @@
   body {
     @apply bg-background text-foreground;
     overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: auto; /* Always allow vertical scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+
+  /* Ensure footer and all sections are scrollable */
+  main {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+  }
+
+  footer {
+    position: relative;
+    z-index: 10;
+    /* Ensure footer is always visible and above background */
   }
 
   .section-container {

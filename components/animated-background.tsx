@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { motion, useReducedMotion } from "framer-motion"
 
 export default function AnimatedBackground() {
@@ -13,6 +13,15 @@ export default function AnimatedBackground() {
   const reduceMotion = useReducedMotion()
   const paused = useRef(false)
   const scaleRef = useRef(1)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    // Detect mobile
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -23,7 +32,7 @@ export default function AnimatedBackground() {
 
     const resizeCanvas = () => {
       // Downscale the drawing resolution to reduce GPU/CPU load
-      const scale = reduceMotion ? 0.6 : 0.8
+      const scale = isMobile ? 0.5 : (reduceMotion ? 0.6 : 0.8)
       scaleRef.current = scale
       canvas.width = Math.max(1, Math.floor(window.innerWidth * scale))
       canvas.height = Math.max(1, Math.floor(window.innerHeight * scale))
@@ -36,7 +45,8 @@ export default function AnimatedBackground() {
     const initParticles = () => {
       particles.current = []
       const base = Math.min(Math.floor(window.innerWidth / 16), 120)
-      const particleCount = reduceMotion ? Math.floor(base * 0.5) : base
+      // On mobile, use drastically fewer particles
+      const particleCount = isMobile ? Math.floor(base * 0.25) : (reduceMotion ? Math.floor(base * 0.5) : base)
 
       for (let i = 0; i < particleCount; i++) {
         particles.current.push({
@@ -58,7 +68,7 @@ export default function AnimatedBackground() {
 
       // Frame cap for smoother CPU usage
       const t = now ?? performance.now()
-      const targetFps = reduceMotion ? 24 : 45
+      const targetFps = isMobile ? 20 : (reduceMotion ? 24 : 45)
       const interval = 1000 / targetFps
       if (t - lastFrameTime.current < interval) {
         animationFrameId.current = requestAnimationFrame(drawParticles)
@@ -84,13 +94,13 @@ export default function AnimatedBackground() {
         if (particle.y > canvas.height) particle.y = 0
         else if (particle.y < 0) particle.y = canvas.height
 
-        // Mouse interaction
+        // Mouse interaction - disabled on mobile
   const dx = particle.x - mousePosition.current.x
   const dy = particle.y - mousePosition.current.y
         const distance = Math.sqrt(dx * dx + dy * dy)
-  const maxDistance = reduceMotion ? 120 : 180
+  const maxDistance = isMobile ? 0 : (reduceMotion ? 120 : 180)
 
-        if (distance < maxDistance) {
+        if (!isMobile && distance < maxDistance) {
           const force = (maxDistance - distance) / maxDistance
           particle.speedX += dx * force * 0.02
           particle.speedY += dy * force * 0.02
@@ -122,7 +132,7 @@ export default function AnimatedBackground() {
       })
 
       // Spatial hashing to avoid O(n^2) for line connections
-  const threshold = reduceMotion ? 95 : 125
+  const threshold = isMobile ? 70 : (reduceMotion ? 95 : 125)
       const cellSize = threshold
       const grid = new Map<string, number[]>()
       const pts = particles.current
@@ -137,8 +147,8 @@ export default function AnimatedBackground() {
         else grid.set(key, [i])
       }
 
-  const maxConnections = reduceMotion ? 3 : 7
-  const lineWidth = reduceMotion ? 0.7 : 0.9
+  const maxConnections = isMobile ? 2 : (reduceMotion ? 3 : 7)
+  const lineWidth = isMobile ? 0.5 : (reduceMotion ? 0.7 : 0.9)
       for (let i = 0; i < pts.length; i++) {
         const p = pts[i]
         const cx = Math.floor(p.x / cellSize)
@@ -220,7 +230,7 @@ export default function AnimatedBackground() {
       ref={canvasRef}
   className="pointer-events-none fixed inset-0 z-0 opacity-60 dark:opacity-40"
   initial={{ opacity: 0 }}
-  animate={{ opacity: reduceMotion ? 0.2 : 0.9 }}
+  animate={{ opacity: isMobile ? 0.3 : (reduceMotion ? 0.2 : 0.9) }}
   transition={{ duration: 0.6 }}
     />
   )

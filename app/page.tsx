@@ -7,13 +7,15 @@ import AnimatedBackground from "@/components/animated-background"
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <>
       <AnimatedBackground />
-      <Hero />
-      <About />
-      <Skills />
-      <Work />
+      <main className="min-h-screen relative z-1">
+        <Hero />
+        <About />
+        <Skills />
+        <Work />
+      </main>
       <ScrollToTop />
-    </main>
+    </>
   )
 }
