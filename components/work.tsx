@@ -2,7 +2,17 @@
 
 import { useRef } from "react"
 import ProjectCard from "@/components/project-card"
-import PhotographyCarousel from "@/components/photography-carousel"
+import dynamic from "next/dynamic"
+
+const PhotographyCarousel = dynamic(
+  () => import("@/components/photography-carousel"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="mt-6 h-48 w-full rounded-lg bg-neutral-100 dark:bg-neutral-800 animate-pulse" />
+    ),
+  }
+)
 
 const projects = [
   {

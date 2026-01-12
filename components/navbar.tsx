@@ -11,6 +11,7 @@ const navLinks = [
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Work", href: "#work" },
+  { name: "Social Media", href: "#footer" },
 ]
 
 export default function Navbar() {

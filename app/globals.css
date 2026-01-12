@@ -75,3 +75,12 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden; /* Prevent horizontal scrolling on html */
 }
+
+/* Hide scrollbar for mobile carousel */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}

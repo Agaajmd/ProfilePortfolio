@@ -5,7 +5,7 @@ import { Github, Linkedin, Instagram, Mail } from "lucide-react"
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-secondary/50 py-8 dark:bg-secondary/20">
+    <footer id="footer" className="relative overflow-hidden bg-secondary/50 py-8 dark:bg-secondary/20">
       {/* Soft static shapes to avoid animation overhead */}
       <div className="absolute inset-0 -z-10 overflow-hidden opacity-25">
         <div className="absolute -left-20 -top-20 h-40 w-40 rounded-full bg-primary/30 blur-3xl" />

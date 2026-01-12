@@ -25,6 +25,7 @@ export default function PhotographyCarousel() {
   const dragStartRef = useRef({ x: 0, y: 0 })
   const autoplayRef = useRef<NodeJS.Timeout | null>(null)
   const slidesCount = useMemo(() => photos.length, [])
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const VISIBLE_CARDS = 3 // Always show 3 cards (center + 2 preview)
 
   // Detect mobile device
@@ -35,6 +36,19 @@ export default function PhotographyCarousel() {
     checkMobile()
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Detect reduced motion preference
+  useEffect(() => {
+    try {
+      const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+      setPrefersReducedMotion(mq.matches)
+      const handler = () => setPrefersReducedMotion(mq.matches)
+      mq.addEventListener?.('change', handler)
+      return () => mq.removeEventListener?.('change', handler)
+    } catch (e) {
+      return
+    }
   }, [])
 
   // Sync selected index from Embla
@@ -70,7 +84,8 @@ export default function PhotographyCarousel() {
       }
     }
 
-    startAutoplay()
+    // Don't autoplay if reduced motion preference set
+    if (!prefersReducedMotion) startAutoplay()
     
     return () => stopAutoplay()
   }, [api, isDragging])
@@ -162,6 +177,26 @@ export default function PhotographyCarousel() {
     >
       {/* Container with proper left/right margins for carousel */}
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 overflow-visible max-w-7xl">
+        {/* On mobile render a lightweight horizontal scroller to reduce JS and animations */}
+        {isMobile ? (
+          <div className="flex gap-4 overflow-x-auto touch-pan-x py-2 -mx-4 px-4 scrollbar-none">
+            {photos.map((src, i) => (
+              <div key={src} className="min-w-[70%] flex-shrink-0 snap-center">
+                <div className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl shadow-md">
+                  <Image
+                    src={src}
+                    alt={`Photography ${i + 1}`}
+                    fill
+                    className="object-cover"
+                    sizes="85vw"
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                    priority={i === 0}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
         <Carousel 
           orientation="horizontal" 
           opts={{ 
@@ -204,8 +239,8 @@ export default function PhotographyCarousel() {
                           isCenter ? "rounded-3xl" : "rounded-2xl"
                         }`}
                         sizes="(max-width: 640px) 85vw, (max-width: 768px) 70vw, (max-width: 1024px) 60vw, 45vw"
-                        unoptimized
-                        priority={i < 3}
+                        loading={i === 0 ? 'eager' : 'lazy'}
+                        priority={i === 0}
                       />
 
                       {!isCenter && (
@@ -218,6 +253,7 @@ export default function PhotographyCarousel() {
             })}
           </CarouselContent>
         </Carousel>
+        )}
       </div>
 
       {/* Instructions */}

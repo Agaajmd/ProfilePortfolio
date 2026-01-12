@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Download, Eye } from "lucide-react"
+import { Download, Eye, Mail } from "lucide-react"
 import AnimatedText from "./animated-text"
 import { useRef } from "react"
 import { useInView } from "framer-motion"
@@ -78,6 +78,20 @@ export default function Hero() {
             </span>
           </motion.a>
 
+          {/* Contact */}
+          <motion.a
+            href="#footer"
+            className="group relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#22c55e_0%,#3b82f6_50%,#22c55e_100%)]" />
+            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-primary px-8 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+              <Mail size={16} />
+              <span>Contact</span>
+            </span>
+          </motion.a>
+
           {/* Download CV */}
           <motion.a
             href="/CV/Agaaa%20Profesional%20CV.pdf"
@@ -88,7 +102,7 @@ export default function Hero() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#22c55e_0%,#3b82f6_50%,#22c55e_100%)]" />
+            <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#a855f7_0%,#ec4899_50%,#a855f7_100%)]" />
             <span className="inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-primary px-8 py-1 text-sm font-medium text-white backdrop-blur-3xl">
               <Download size={16} />
               <span>Download CV</span>
