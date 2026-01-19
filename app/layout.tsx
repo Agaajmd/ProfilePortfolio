@@ -10,9 +10,27 @@ import MotionProvider from "@/components/motion-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Nur Jagad Muhammad Dani | Portfolio",
-  description: "Personal portfolio of Nur Jagad Muhammad Dani - Web Developer & Photographer",
-    generator: 'v0.dev'
+  title: "Nur Jagad Muhammad Dani | Web Developer & Photographer Portfolio",
+  description: "Personal portfolio of Nur Jagad Muhammad Dani - A passionate Web Developer specializing in Next.js, React, and TypeScript. Also a skilled photographer based in Malang, Indonesia.",
+  keywords: ["Nur Jagad Muhammad Dani", "Web Developer", "Photographer", "Next.js", "React", "TypeScript", "Portfolio", "Malang", "Indonesia", "Frontend Developer"],
+  authors: [{ name: "Nur Jagad Muhammad Dani" }],
+  creator: "Nur Jagad Muhammad Dani",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    title: "Nur Jagad Muhammad Dani | Web Developer & Photographer",
+    description: "Personal portfolio showcasing web development projects and photography work.",
+    siteName: "Agaaa Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nur Jagad Muhammad Dani | Portfolio",
+    description: "Web Developer & Photographer Portfolio",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export default function RootLayout({

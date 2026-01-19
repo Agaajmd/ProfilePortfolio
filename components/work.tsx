@@ -91,7 +91,7 @@ export default function Work() {
 
         {/* Photography Section */}
         <div className="mt-16 md:mt-20 mb-4 md:mb-6">
-          <h3 className="section-title">Photography</h3>
+          <h2 className="section-title">Photography</h2>
           <p className="section-subtitle">Explore my photography collection</p>
           <PhotographyCarousel />
         </div>

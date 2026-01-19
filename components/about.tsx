@@ -77,14 +77,14 @@ export default function About() {
               damping: 15,
             }}
           >
-            <motion.h3
+            <motion.p
               className="mb-4 text-2xl font-bold"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
               Web Developer & Photographer
-            </motion.h3>
+            </motion.p>
 
             <div className="mb-6 text-muted-foreground">
               <AnimatedText

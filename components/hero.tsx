@@ -4,12 +4,10 @@ import { motion } from "framer-motion"
 import { Download, Eye, Mail } from "lucide-react"
 import AnimatedText from "./animated-text"
 import { useRef } from "react"
-import { useInView } from "framer-motion"
 import ThemeConsistentText from "./theme-consistent-text"
 
 export default function Hero() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
 
   return (
     <section id="home" className="flex min-h-screen items-center justify-center pt-16">
@@ -32,11 +30,11 @@ export default function Hero() {
 
         <div className="mb-6 font-bold leading-tight break-words text-2xl sm:text-4xl md:text-6xl">
           <AnimatedText text="Hi! My Name is" type="words" />
-          <motion.div
+          <motion.h1
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.35, ease: "easeOut" }}
-            className="mt-2 text-primary"
+            className="mt-2 text-primary text-2xl sm:text-4xl md:text-6xl font-bold"
           >
             {/* Mobile: allow natural word-wrapping */}
             <span className="sm:hidden block">
@@ -46,7 +44,7 @@ export default function Hero() {
             <span className="hidden sm:block">
               <AnimatedText text="Nur Jagad Muhammad Dani" type="chars" delay={0.2} />
             </span>
-          </motion.div>
+          </motion.h1>
         </div>
 
         <motion.div
