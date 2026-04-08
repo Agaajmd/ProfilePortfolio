@@ -10,6 +10,7 @@ import MotionProvider from "@/components/motion-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://nurjagadmuhammaddani.vercel.app"),
   title: "Nur Jagad Muhammad Dani | Web Developer & Photographer Portfolio",
   description: "Personal portfolio of Nur Jagad Muhammad Dani - A passionate Web Developer specializing in Next.js, React, and TypeScript. Also a skilled photographer based in Malang, Indonesia.",
   keywords: ["Nur Jagad Muhammad Dani", "Web Developer", "Photographer", "Next.js", "React", "TypeScript", "Portfolio", "Malang", "Indonesia", "Frontend Developer"],
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
+    url: "https://nurjagadmuhammaddani.vercel.app",
     title: "Nur Jagad Muhammad Dani | Web Developer & Photographer",
     description: "Personal portfolio showcasing web development projects and photography work.",
     siteName: "Agaaa Portfolio",
@@ -32,9 +34,13 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: "/Agaaa-logo.png",
-    shortcut: "/Agaaa-logo.png",
-    apple: "/Agaaa-logo.png",
+    icon: [
+      { url: "/icon.png", type: "image/png", sizes: "512x512" }, // Next.js will serve the app/icon.png at this path or generated hash
+    ],
+    shortcut: ["/icon.png"],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
 }
 
@@ -45,6 +51,26 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Nur Jagad Muhammad Dani",
+              url: "https://nurjagadmuhammaddani.vercel.app",
+              image: "https://nurjagadmuhammaddani.vercel.app/profil.jpg",
+              jobTitle: "Web Developer & Photographer",
+              description: "A passionate Web Developer specializing in Next.js, React, and TypeScript. Also a skilled photographer based in Malang, Indonesia.",
+              sameAs: [
+                "https://github.com/Agaa-kun", // Update if needed
+                "https://instagram.com/agaa.kun" // Update if needed
+              ]
+            })
+          }}
+        />
+      </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <MotionProvider>

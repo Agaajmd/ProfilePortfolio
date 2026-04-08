@@ -52,7 +52,9 @@ export default function About() {
                 src="/profil.jpg"
                 alt="Nur Jagad Muhammad Dani"
                 fill
+                sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
+                loading="lazy"
               />
 
               {/* Animated overlay */}
