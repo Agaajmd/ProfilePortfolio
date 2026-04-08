@@ -31,6 +31,11 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: "/Agaaa-logo.png",
+    shortcut: "/Agaaa-logo.png",
+    apple: "/Agaaa-logo.png",
+  },
 }
 
 export default function RootLayout({
