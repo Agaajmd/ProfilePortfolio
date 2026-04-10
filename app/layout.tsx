@@ -6,11 +6,13 @@ import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import MotionProvider from "@/components/motion-provider"
+import { LanguageProvider } from "@/components/language-provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nurjagadmuhammaddani.vercel.app"),
+  applicationName: "Agaaa Portfolio",
   alternates: {
     canonical: "/",
   },
@@ -44,6 +46,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
   verification: {
     google: "DYtXdo-ndLdf8It3CjKCOvoJblxDgu-pzxFVmo1O-X8",
@@ -80,13 +89,15 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <MotionProvider>
-            <div className="flex min-h-screen flex-col bg-background text-foreground">
-              <Navbar />
-              {children}
-              <Footer />
-            </div>
-          </MotionProvider>
+          <LanguageProvider>
+            <MotionProvider>
+              <div className="flex min-h-screen flex-col bg-background text-foreground">
+                <Navbar />
+                {children}
+                <Footer />
+              </div>
+            </MotionProvider>
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

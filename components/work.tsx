@@ -3,6 +3,8 @@
 import { useRef } from "react"
 import ProjectCard from "@/components/project-card"
 import dynamic from "next/dynamic"
+import { projects } from "@/lib/projects"
+import { useLanguage } from "@/components/language-provider"
 
 const PhotographyCarousel = dynamic(
   () => import("@/components/photography-carousel"),
@@ -14,66 +16,16 @@ const PhotographyCarousel = dynamic(
   }
 )
 
-const projects = [
-  {
-    title: "Aga Game Station",
-    description: "A fully responsive booking system, built with Next.js and Tailwind CSS.",
-    image: "/WORK/agagameS.png",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
-    liveUrl: "https://aga-game-station.vercel.app/",
-    githubUrl: "https://github.com/agaajmd",
-  },
-   {
-    title: "School Management System",
-    description: "A system for managing online school activities such as attendance, grades, and schedules.",
-    image: "/WORK/School-management.png",
-    tags: ["next.js", "TypeScript", "Tailwind CSS"],
-    liveUrl: "https://siakad-school-management-system.vercel.app/",
-    githubUrl: "https://github.com/agaajmd",
-  },
-  {
-    title: "Cafe Order by Table",
-    description: "A system for admin and user managing online orders and payments at the table.",
-    image: "/WORK/Afif Cafe.png",
-    tags: ["next.js", "TypeScript", "Tailwind CSS"],
-    liveUrl: "https://afif-coffee.vercel.app/",
-    githubUrl: "https://github.com/agaajmd",
-  },
-  {
-    title: "KAI Website",
-    description: "A fully responsive e-commerce platform built with Next.js and Tailwind CSS.",
-    image: "/WORK/kai.png",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma"],
-    liveUrl: "https://kai-access-betaaga.vercel.app/",
-    githubUrl: "https://github.com/agaajmd/KAI-ACCESS",
-  },
-  {
-    title: "Manual Book KAI WEB",
-    description: "A productivity app for managing tasks and projects with team collaboration features.",
-    image: "/WORK/manualBook.png",
-    tags: ["HTML", "CSS"],
-    liveUrl: "https://manual-book-kai-accessagaaa.vercel.app/",
-    githubUrl: "https://github.com/agaajmd/manualBook-KAI_ACCESS",
-  },
-  {
-    title: "E-Commerce",
-    description: "A store Take A Riz.",
-    image: "/WORK/Take A RIz.png",
-    tags: ["Next.js", "TypeScript", "CSS"],
-    liveUrl: "https://take-a-riz-e-commerce.vercel.app/",
-    githubUrl: "https://github.com/agaajmd/TakeARizStore",
-  },
-]
-
 export default function Work() {
   const ref = useRef<HTMLDivElement | null>(null)
   const containerRef = useRef<HTMLDivElement | null>(null)
+  const { t } = useLanguage()
 
   return (
   <section id="work" className="bg-secondary/30 dark:bg-secondary/10" ref={ref}>
       <div className="section-container" ref={containerRef}>
-        <h2 className="section-title">My Work</h2>
-        <p className="section-subtitle">Check out some of my recent projects</p>
+        <h2 className="section-title">{t.work.title}</h2>
+        <p className="section-subtitle">{t.work.subtitle}</p>
 
         <div className="grid grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:grid-cols-3 lg:gap-8">
           {projects.map((project) => (
@@ -85,14 +37,15 @@ export default function Work() {
               tags={project.tags}
               liveUrl={project.liveUrl}
               githubUrl={project.githubUrl}
+              slug={project.slug}
             />
           ))}
         </div>
 
         {/* Photography Section */}
         <div className="mt-16 md:mt-20 mb-4 md:mb-6">
-          <h2 className="section-title">Photography</h2>
-          <p className="section-subtitle">Explore my photography collection</p>
+          <h2 className="section-title">{t.work.photography}</h2>
+          <p className="section-subtitle">{t.work.photographySubtitle}</p>
           <PhotographyCarousel />
         </div>
       </div>

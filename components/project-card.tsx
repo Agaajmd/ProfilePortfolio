@@ -1,7 +1,9 @@
 "use client"
 
 import Image from "next/image"
-import { ExternalLink, Github } from "lucide-react"
+import { ExternalLink, Github, Share2 } from "lucide-react"
+import { useLanguage } from "@/components/language-provider"
+import { useState } from "react"
 
 export interface ProjectCardProps {
   title: string
@@ -10,9 +12,34 @@ export interface ProjectCardProps {
   tags: string[]
   liveUrl: string
   githubUrl: string
+  slug: string
 }
 
-export default function ProjectCard({ title, description, image, tags, liveUrl, githubUrl }: ProjectCardProps) {
+export default function ProjectCard({ title, description, image, tags, liveUrl, githubUrl, slug }: ProjectCardProps) {
+  const { t } = useLanguage()
+  const [copied, setCopied] = useState(false)
+
+  const handleShare = async () => {
+    const shareUrl = `${window.location.origin}/work/${slug}`
+
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: `${title} | Nur Jagad Muhammad Dani`,
+          text: description,
+          url: shareUrl,
+        })
+        return
+      }
+
+      await navigator.clipboard.writeText(shareUrl)
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 1800)
+    } catch {
+      window.alert(t.work.shareError)
+    }
+  }
+
   return (
     <article
       className="group relative overflow-hidden rounded-2xl sm:rounded-3xl border border-border shadow-sm transform-gpu transition-all duration-300 ease-out will-change-[transform,box-shadow] hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:border-primary/50 hover:ring-2 hover:ring-primary/30 md:hover:scale-[1.03] md:hover:-translate-y-2.5 focus-within:shadow-2xl focus-within:border-primary/60 focus-within:ring-2 focus-within:ring-primary/35 motion-reduce:transform-none"
@@ -69,7 +96,7 @@ export default function ProjectCard({ title, description, image, tags, liveUrl, 
               onClick={(e) => e.stopPropagation()}
             >
               <ExternalLink size={14} className="sm:w-4 sm:h-4" />
-              <span>Live</span>
+              <span>{t.work.live}</span>
             </a>
             <a
               href={githubUrl}
@@ -79,8 +106,20 @@ export default function ProjectCard({ title, description, image, tags, liveUrl, 
               onClick={(e) => e.stopPropagation()}
             >
               <Github size={14} className="sm:w-4 sm:h-4" />
-              <span>Code</span>
+              <span>{t.work.code}</span>
             </a>
+            <button
+              type="button"
+              className="inline-flex items-center gap-1 sm:gap-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-white transition-all duration-150 hover:bg-white/30 hover:scale-105 active:scale-95 z-10"
+              onClick={(e) => {
+                e.stopPropagation()
+                void handleShare()
+              }}
+              aria-label={t.work.share}
+            >
+              <Share2 size={14} className="sm:w-4 sm:h-4" />
+              <span>{copied ? t.work.copied : t.work.share}</span>
+            </button>
           </div>
         </div>
       </div>

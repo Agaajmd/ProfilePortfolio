@@ -3,6 +3,7 @@
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import AnimatedSkillBar from "./animated-skill-bar"
+import { useLanguage } from "./language-provider"
 
 const skills = [
   { name: "HTML" },
@@ -18,6 +19,7 @@ const skills = [
 export default function Skills() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const { t } = useLanguage()
 
   return (
     <section id="skills">
@@ -28,7 +30,7 @@ export default function Skills() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5 }}
         >
-          My Skills
+          {t.skills.title}
         </motion.h2>
 
         <motion.p
@@ -37,7 +39,7 @@ export default function Skills() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Here are some of the skills I&apos;ve acquired over the years
+          {t.skills.subtitle}
         </motion.p>
 
         <div className="mx-auto grid max-w-3xl gap-6 md:grid-cols-2">

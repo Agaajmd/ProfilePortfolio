@@ -2,8 +2,11 @@
 
 import Link from "next/link"
 import { Github, Linkedin, Instagram, Mail } from "lucide-react"
+import { useLanguage } from "./language-provider"
 
 export default function Footer() {
+  const { t } = useLanguage()
+
   return (
     <footer id="footer" className="relative overflow-hidden bg-secondary/50 py-8 dark:bg-secondary/20">
       {/* Soft static shapes - disabled on mobile to prevent lag */}
@@ -21,7 +24,7 @@ export default function Footer() {
                 Agaaa
               </span>
             </Link>
-            <p className="mt-2 text-sm text-muted-foreground">Web Developer & Photographer</p>
+            <p className="mt-2 text-sm text-muted-foreground">{t.footer.role}</p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-3 md:justify-end md:gap-4">
@@ -48,7 +51,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} Nur Jagad Muhammad Dani. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Nur Jagad Muhammad Dani. {t.footer.rights}</p>
         </div>
       </div>
     </footer>

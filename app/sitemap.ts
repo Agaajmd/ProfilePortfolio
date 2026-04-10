@@ -1,7 +1,15 @@
 import { MetadataRoute } from 'next'
+import { projects } from '@/lib/projects'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://nurjagadmuhammaddani.vercel.app'
+
+  const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
+    url: `${baseUrl}/work/${project.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }))
 
   return [
     {
@@ -10,6 +18,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 1,
     },
-    // Add other routes here if you have more pages later (e.g. /about, /projects)
+    ...projectPages,
   ]
 }

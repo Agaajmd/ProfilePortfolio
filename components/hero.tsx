@@ -5,9 +5,11 @@ import { Download, Eye, Mail } from "lucide-react"
 import AnimatedText from "./animated-text"
 import { useRef } from "react"
 import ThemeConsistentText from "./theme-consistent-text"
+import { useLanguage } from "./language-provider"
 
 export default function Hero() {
   const ref = useRef(null)
+  const { t } = useLanguage()
 
   return (
     <section id="home" className="flex min-h-screen items-center justify-center pt-16">
@@ -24,12 +26,12 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            <ThemeConsistentText text="Welcome to my portfolio" />
+            <ThemeConsistentText text={t.hero.welcome} />
           </motion.span>
         </motion.div>
 
         <div className="mb-6 font-bold leading-tight break-words text-2xl sm:text-4xl md:text-6xl">
-          <AnimatedText text="Hi! My Name is" type="words" />
+          <AnimatedText text={t.hero.intro} type="words" />
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -53,7 +55,7 @@ export default function Hero() {
           transition={{ duration: 0.35, delay: 0.35, ease: "easeOut" }}
           className="mb-8 max-w-2xl text-xl text-muted-foreground"
         >
-          <AnimatedText text="A passionate Web Developer & Photographer" type="typewriter" delay={0.4} />
+          <AnimatedText text={t.hero.tagline} type="typewriter" delay={0.4} />
         </motion.div>
 
         <motion.div
@@ -72,7 +74,7 @@ export default function Hero() {
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#3b82f6_0%,#4f46e5_50%,#3b82f6_100%)]" />
             <span className="inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-primary px-8 py-1 text-sm font-medium text-white backdrop-blur-3xl">
               <Eye size={16} />
-              <span>View My Work</span>
+              <span>{t.hero.viewWork}</span>
             </span>
           </motion.a>
 
@@ -86,7 +88,7 @@ export default function Hero() {
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#22c55e_0%,#3b82f6_50%,#22c55e_100%)]" />
             <span className="inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-primary px-8 py-1 text-sm font-medium text-white backdrop-blur-3xl">
               <Mail size={16} />
-              <span>Contact</span>
+              <span>{t.hero.contact}</span>
             </span>
           </motion.a>
 
@@ -103,7 +105,7 @@ export default function Hero() {
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#a855f7_0%,#ec4899_50%,#a855f7_100%)]" />
             <span className="inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-primary px-8 py-1 text-sm font-medium text-white backdrop-blur-3xl">
               <Download size={16} />
-              <span>Download CV</span>
+              <span>{t.hero.downloadCv}</span>
             </span>
           </motion.a>
         </motion.div>

@@ -4,10 +4,12 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import AnimatedText from "./animated-text";
+import { useLanguage } from "./language-provider";
 
 export default function About() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const { t } = useLanguage();
 
   return (
     <section id="about" className="bg-secondary/30 dark:bg-secondary/10">
@@ -18,7 +20,7 @@ export default function About() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5 }}
         >
-          About Me
+          {t.about.title}
         </motion.h2>
 
         <div className="flex flex-col items-center gap-12 md:flex-row">
@@ -85,12 +87,12 @@ export default function About() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
-              Web Developer & Photographer
+              {t.about.role}
             </motion.p>
 
             <div className="mb-6 text-muted-foreground">
               <AnimatedText
-                text="I am a Software Engineering student at SMK Telkom Malang with a deep interest in web development. My main focus is Frontend Development using Next.js and Node.js."
+                text={t.about.p1}
                 type="chars"
                 once={false}
                 delay={0.6}
@@ -103,13 +105,7 @@ export default function About() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.7 }}
             >
-              I have practical experience in building web applications that are
-              not only functional but also have good UI/UX. Some of the projects
-              I have completed include: Cafe Menu Ordering System Website: A
-              self-service ordering system with QRIS and cash payment features.
-              PlayStation Booking Website: An online reservation platform with a
-              multi-level login authorization system (User, Admin, Super Admin).
-              MomoFlorist: A landing page for a florist business profile. 
+              {t.about.p2}
             </motion.p>
             <motion.p
               className="mb-6 text-muted-foreground"
@@ -117,11 +113,7 @@ export default function About() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.7 }}
             >
-             Beyond
-              my technical skills, I have well-developed leadership soft skills.
-              My experience as a Drama Producer for the Bulan Bahasa event has
-              trained me in time management and team organization. I am also
-              certified in the fundamentals of AI from Dicoding Academy.
+              {t.about.p3}
             </motion.p>
             <motion.p
               className="mb-6 text-muted-foreground"
@@ -129,7 +121,7 @@ export default function About() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.7 }}
             >
-I am open to discussions about internship opportunities or project collaborations.
+              {t.about.p4}
             </motion.p>
 
             <div className="flex flex-wrap gap-4">

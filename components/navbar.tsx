@@ -3,18 +3,21 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { ModeToggle } from "./mode-toggle"
+import LanguageToggle from "./language-toggle"
 import { Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-
-const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Work", href: "#work" },
-  { name: "Social Media", href: "#footer" },
-]
+import { useLanguage } from "./language-provider"
 
 export default function Navbar() {
+  const { t } = useLanguage()
+  const navLinks = [
+    { name: t.nav.home, href: "#home" },
+    { name: t.nav.about, href: "#about" },
+    { name: t.nav.skills, href: "#skills" },
+    { name: t.nav.work, href: "#work" },
+    { name: t.nav.social, href: "#footer" },
+  ]
+
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
@@ -138,6 +141,13 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
+              <LanguageToggle />
+            </motion.li>
+            <motion.li
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.55 }}
+            >
               <ModeToggle />
             </motion.li>
           </ul>
@@ -150,10 +160,11 @@ export default function Navbar() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
+          <LanguageToggle />
           <ModeToggle />
           <motion.button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="ml-4 p-1"
+            className="ml-2 p-1"
             aria-label="Toggle menu"
             whileTap={{ scale: 0.9 }}
           >
