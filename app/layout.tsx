@@ -7,12 +7,25 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import MotionProvider from "@/components/motion-provider"
 import { LanguageProvider } from "@/components/language-provider"
+import AnimatedBackground from "@/components/animated-background"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nurjagadmuhammaddani.vercel.app"),
   applicationName: "Agaaa Portfolio",
+  category: "portfolio",
+  referrer: "origin-when-cross-origin",
+  formatDetection: {
+    email: true,
+    address: false,
+    telephone: false,
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Agaaa Portfolio",
+  },
   alternates: {
     canonical: "/",
   },
@@ -39,6 +52,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    creator: "@agaajmd",
     title: "Nur Jagad Muhammad Dani | Portfolio",
     description: "Web Developer & Photographer Portfolio",
     images: ["https://nurjagadmuhammaddani.vercel.app/twitter-image.png"],
@@ -86,6 +100,22 @@ export default function RootLayout({
             })
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Agaaa Portfolio",
+              url: "https://nurjagadmuhammaddani.vercel.app",
+              inLanguage: ["en", "id"],
+              author: {
+                "@type": "Person",
+                name: "Nur Jagad Muhammad Dani"
+              }
+            })
+          }}
+        />
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
@@ -93,6 +123,7 @@ export default function RootLayout({
             <MotionProvider>
               <div className="flex min-h-screen flex-col bg-background text-foreground">
                 <Navbar />
+                <AnimatedBackground />
                 {children}
                 <Footer />
               </div>

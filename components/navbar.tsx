@@ -23,7 +23,11 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home")
 
   useEffect(() => {
+    let ticking = false
     const handleScroll = () => {
+      if (ticking) return
+      ticking = true
+      window.requestAnimationFrame(() => {
       if (window.scrollY > 10) {
         setIsScrolled(true)
       } else {
@@ -43,9 +47,11 @@ export default function Navbar() {
           }
         }
       }
+        ticking = false
+      })
     }
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 

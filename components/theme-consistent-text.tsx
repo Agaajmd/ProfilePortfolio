@@ -76,7 +76,7 @@ export default function ThemeConsistentText({
   return (
     <motion.div
       ref={setScope}
-      className={`inline-block ${className}`}
+      className={`inline-flex max-w-full flex-wrap items-center justify-center text-center ${className}`}
       variants={containerVariants}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}

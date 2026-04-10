@@ -18,15 +18,15 @@ export default function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35, ease: "easeOut" }}
-          className="mb-4"
+          className="mb-4 w-full"
         >
           <motion.span
-            className="inline-block text-lg font-medium text-primary"
+            className="block w-full text-center text-lg font-medium text-primary"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            <ThemeConsistentText text={t.hero.welcome} />
+            <ThemeConsistentText text={t.hero.welcome} className="max-w-full justify-center text-center" />
           </motion.span>
         </motion.div>
 

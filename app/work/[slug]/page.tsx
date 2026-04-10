@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ExternalLink, Github, ArrowLeft } from "lucide-react"
-import { getProjectBySlug, projects } from "@/lib/projects"
+import { getProjectBySlug, projects, resolveProjectImagePath } from "@/lib/projects"
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -30,12 +30,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${project.title} | Nur Jagad Muhammad Dani`,
     description: project.description,
+    keywords: [project.title, "Nur Jagad Muhammad Dani", "Next.js", "Portfolio", "Web Developer"],
+    robots: {
+      index: true,
+      follow: true,
+    },
     alternates: { canonical: `/work/${project.slug}` },
     openGraph: {
       title: `${project.title} | Nur Jagad Muhammad Dani`,
       description: project.description,
       url: pageUrl,
       type: "article",
+      locale: "en_US",
       images: [
         {
           url: ogImageUrl,
@@ -62,6 +68,8 @@ export default async function ProjectSharePage({ params }: Props) {
     notFound()
   }
 
+  const projectImage = resolveProjectImagePath(project.image)
+
   return (
     <main className="container mx-auto min-h-screen px-4 pb-16 pt-28">
       <div className="mb-6">
@@ -77,7 +85,7 @@ export default async function ProjectSharePage({ params }: Props) {
       <article className="mx-auto max-w-4xl overflow-hidden rounded-3xl border bg-card shadow-sm">
         <div className="relative aspect-[16/9] w-full">
           <Image
-            src={project.image}
+            src={projectImage}
             alt={project.title}
             fill
             priority

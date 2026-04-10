@@ -4,6 +4,7 @@ import Image from "next/image"
 import { ExternalLink, Github, Share2 } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { useState } from "react"
+import { resolveProjectImagePath } from "@/lib/projects"
 
 export interface ProjectCardProps {
   title: string
@@ -18,6 +19,7 @@ export interface ProjectCardProps {
 export default function ProjectCard({ title, description, image, tags, liveUrl, githubUrl, slug }: ProjectCardProps) {
   const { t } = useLanguage()
   const [copied, setCopied] = useState(false)
+  const normalizedImage = resolveProjectImagePath(image || "/placeholder.svg")
 
   const handleShare = async () => {
     const shareUrl = `${window.location.origin}/work/${slug}`
@@ -60,10 +62,11 @@ export default function ProjectCard({ title, description, image, tags, liveUrl, 
         </button>
 
         <Image
-          src={image || "/placeholder.svg"}
+          src={normalizedImage}
           alt={title}
           fill
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          quality={72}
           loading="lazy"
           decoding="async"
           className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.1] motion-reduce:transform-none"

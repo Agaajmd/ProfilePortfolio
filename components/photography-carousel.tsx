@@ -189,6 +189,7 @@ export default function PhotographyCarousel() {
                     fill
                     className="object-cover"
                     sizes="85vw"
+                    quality={70}
                     loading={i === 0 ? 'eager' : 'lazy'}
                     priority={i === 0}
                   />
@@ -239,6 +240,7 @@ export default function PhotographyCarousel() {
                           isCenter ? "rounded-3xl" : "rounded-2xl"
                         }`}
                         sizes="(max-width: 640px) 85vw, (max-width: 768px) 70vw, (max-width: 1024px) 60vw, 45vw"
+                        quality={72}
                         loading={i === 0 ? 'eager' : 'lazy'}
                         priority={i === 0}
                       />

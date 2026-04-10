@@ -8,6 +8,14 @@ export type ProjectItem = {
   githubUrl: string
 }
 
+const legacyImageAliases: Record<string, string> = {
+  "/WORK/Aegix-Solutions.png": "/WORK/Aegix-solutions.png",
+}
+
+export function resolveProjectImagePath(path: string) {
+  return legacyImageAliases[path] ?? path
+}
+
 export const projects: ProjectItem[] = [
   {
     slug: "aegix-solutions",
