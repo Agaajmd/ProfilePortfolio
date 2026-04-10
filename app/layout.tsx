@@ -33,6 +33,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    google: "DYtXdo-ndLdf8It3CjKCOvoJblxDgu-pzxFVmo1O-X8",
+  },
   icons: {
     icon: [
       { url: "/icon.png", type: "image/png", sizes: "512x512" }, // Next.js will serve the app/icon.png at this path or generated hash
