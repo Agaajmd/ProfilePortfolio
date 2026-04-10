@@ -11,6 +11,9 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nurjagadmuhammaddani.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
   title: "Nur Jagad Muhammad Dani | Web Developer & Photographer Portfolio",
   description: "Personal portfolio of Nur Jagad Muhammad Dani - A passionate Web Developer specializing in Next.js, React, and TypeScript. Also a skilled photographer based in Malang, Indonesia.",
   keywords: ["Nur Jagad Muhammad Dani", "Web Developer", "Photographer", "Next.js", "React", "TypeScript", "Portfolio", "Malang", "Indonesia", "Frontend Developer"],
@@ -23,11 +26,20 @@ export const metadata: Metadata = {
     title: "Nur Jagad Muhammad Dani | Web Developer & Photographer",
     description: "Personal portfolio showcasing web development projects and photography work.",
     siteName: "Agaaa Portfolio",
+    images: [
+      {
+        url: "https://nurjagadmuhammaddani.vercel.app/opengraph-image.png",
+        width: 1750,
+        height: 1750,
+        alt: "Nur Jagad Muhammad Dani Portfolio",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Nur Jagad Muhammad Dani | Portfolio",
     description: "Web Developer & Photographer Portfolio",
+    images: ["https://nurjagadmuhammaddani.vercel.app/twitter-image.png"],
   },
   robots: {
     index: true,
@@ -35,15 +47,6 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "DYtXdo-ndLdf8It3CjKCOvoJblxDgu-pzxFVmo1O-X8",
-  },
-  icons: {
-    icon: [
-      { url: "/icon.png", type: "image/png", sizes: "512x512" }, // Next.js will serve the app/icon.png at this path or generated hash
-    ],
-    shortcut: ["/icon.png"],
-    apple: [
-      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
-    ],
   },
 }
 
@@ -67,8 +70,9 @@ export default function RootLayout({
               jobTitle: "Web Developer & Photographer",
               description: "A passionate Web Developer specializing in Next.js, React, and TypeScript. Also a skilled photographer based in Malang, Indonesia.",
               sameAs: [
-                "https://github.com/Agaa-kun", // Update if needed
-                "https://instagram.com/agaa.kun" // Update if needed
+                "https://github.com/agaajmd",
+                "https://www.linkedin.com/in/nurjagadmuhammaddani",
+                "https://www.instagram.com/n.agaaa?igsh=MW1yOGhkdmZjNjE3MA=="
               ]
             })
           }}

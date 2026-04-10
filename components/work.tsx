@@ -21,7 +21,7 @@ const projects = [
     image: "/WORK/agagameS.png",
     tags: ["Next.js", "TypeScript", "Tailwind CSS"],
     liveUrl: "https://aga-game-station.vercel.app/",
-    githubUrl: "https://github.com/Agaajmd/",
+    githubUrl: "https://github.com/agaajmd",
   },
    {
     title: "School Management System",
@@ -29,7 +29,7 @@ const projects = [
     image: "/WORK/School-management.png",
     tags: ["next.js", "TypeScript", "Tailwind CSS"],
     liveUrl: "https://siakad-school-management-system.vercel.app/",
-    githubUrl: "https://github.com/Agaajmd",
+    githubUrl: "https://github.com/agaajmd",
   },
   {
     title: "Cafe Order by Table",
@@ -37,7 +37,7 @@ const projects = [
     image: "/WORK/Afif Cafe.png",
     tags: ["next.js", "TypeScript", "Tailwind CSS"],
     liveUrl: "https://afif-coffee.vercel.app/",
-    githubUrl: "https://github.com/Agaajmd",
+    githubUrl: "https://github.com/agaajmd",
   },
   {
     title: "KAI Website",
@@ -45,7 +45,7 @@ const projects = [
     image: "/WORK/kai.png",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma"],
     liveUrl: "https://kai-access-betaaga.vercel.app/",
-    githubUrl: "https://github.com/Agaajmd/KAI-ACCESS",
+    githubUrl: "https://github.com/agaajmd/KAI-ACCESS",
   },
   {
     title: "Manual Book KAI WEB",
@@ -53,7 +53,7 @@ const projects = [
     image: "/WORK/manualBook.png",
     tags: ["HTML", "CSS"],
     liveUrl: "https://manual-book-kai-accessagaaa.vercel.app/",
-    githubUrl: "https://github.com/Agaajmd/manualBook-KAI_ACCESS",
+    githubUrl: "https://github.com/agaajmd/manualBook-KAI_ACCESS",
   },
   {
     title: "E-Commerce",
@@ -61,7 +61,7 @@ const projects = [
     image: "/WORK/Take A RIz.png",
     tags: ["Next.js", "TypeScript", "CSS"],
     liveUrl: "https://take-a-riz-e-commerce.vercel.app/",
-    githubUrl: "https://github.com/Agaajmd/TakeARizStore",
+    githubUrl: "https://github.com/agaajmd/TakeARizStore",
   },
 ]
 

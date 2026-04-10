@@ -27,7 +27,7 @@ export default function Footer() {
           <div className="flex flex-wrap justify-center gap-3 md:justify-end md:gap-4">
             {[
               { icon: Github, href: "https://github.com/agaajmd", label: "GitHub" },
-              { icon: Linkedin, href: "https://www.linkedin.com/in/nur-jagad-muhammad-dani-6a9972287?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", label: "LinkedIn" },
+              { icon: Linkedin, href: "https://www.linkedin.com/in/nurjagadmuhammaddani", label: "LinkedIn" },
               { icon: Instagram, href: "https://www.instagram.com/n.agaaa?igsh=MW1yOGhkdmZjNjE3MA==", label: "Instagram" },
               { icon: Mail, href: "mailto:n.jagadmd@gmail.com", label: "Email" },
             ].map((item, index) => (
