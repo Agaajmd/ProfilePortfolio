@@ -44,7 +44,8 @@ export default function ProjectCard({ title, description, image, tags, liveUrl, 
 
   return (
     <article
-      className="group relative overflow-hidden rounded-2xl sm:rounded-3xl border border-border shadow-sm transform-gpu transition-all duration-300 ease-out will-change-[transform,box-shadow] hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:border-primary/50 hover:ring-2 hover:ring-primary/30 md:hover:scale-[1.03] md:hover:-translate-y-2.5 focus-within:shadow-2xl focus-within:border-primary/60 focus-within:ring-2 focus-within:ring-primary/35 motion-reduce:transform-none"
+      className="group relative overflow-hidden rounded-2xl sm:rounded-3xl border border-border shadow-sm transform-gpu transition-all duration-300 ease-out will-change-[transform,box-shadow] md:hover:-translate-y-2 md:hover:scale-[1.02] md:hover:shadow-2xl md:hover:border-primary/50 md:hover:ring-2 md:hover:ring-primary/30 lg:hover:scale-[1.03] lg:hover:-translate-y-2.5 focus-within:shadow-2xl focus-within:border-primary/60 focus-within:ring-2 focus-within:ring-primary/35 motion-reduce:transform-none"
+      style={{ contentVisibility: "auto", containIntrinsicSize: "520px" }}
     >
       {/* Full background image */}
       <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] overflow-hidden">

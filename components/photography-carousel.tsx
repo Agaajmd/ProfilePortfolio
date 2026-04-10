@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel"
 
@@ -18,15 +18,11 @@ const photos = [
 export default function PhotographyCarousel() {
   const [api, setApi] = useState<CarouselApi | null>(null)
   const [selectedIndex, setSelectedIndex] = useState(0)
-  const [isDragging, setIsDragging] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const isHoveringRef = useRef(false)
   const wheelLockRef = useRef(false)
-  const dragStartRef = useRef({ x: 0, y: 0 })
   const autoplayRef = useRef<NodeJS.Timeout | null>(null)
-  const slidesCount = useMemo(() => photos.length, [])
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
-  const VISIBLE_CARDS = 3 // Always show 3 cards (center + 2 preview)
 
   // Detect mobile device
   useEffect(() => {
@@ -71,7 +67,7 @@ export default function PhotographyCarousel() {
     const startAutoplay = () => {
       if (autoplayRef.current) clearInterval(autoplayRef.current)
       autoplayRef.current = setInterval(() => {
-        if (!isHoveringRef.current && !isDragging) {
+        if (!isHoveringRef.current) {
           api.scrollNext()
         }
       }, 4500) // Slower, smoother auto-sliding (4.5 seconds)
@@ -88,12 +84,12 @@ export default function PhotographyCarousel() {
     if (!prefersReducedMotion) startAutoplay()
     
     return () => stopAutoplay()
-  }, [api, isDragging])
+  }, [api, prefersReducedMotion])
 
   // Mouse wheel navigation
   const onWheel = useCallback(
     (e: React.WheelEvent<HTMLDivElement>) => {
-      if (!api || isDragging) return
+      if (!api) return
       if (wheelLockRef.current) return
       const threshold = 20
       if (Math.abs(e.deltaY) < threshold) return
@@ -106,7 +102,7 @@ export default function PhotographyCarousel() {
       }
       api.on("settle", release)
     },
-    [api, isDragging]
+    [api]
   )
 
   // Keyboard navigation
@@ -124,46 +120,12 @@ export default function PhotographyCarousel() {
     [api]
   )
 
-  // Drag handlers (mobile only)
-  const handlePointerDown = useCallback((e: React.PointerEvent) => {
-    if (!isMobile) return // Only enable drag on mobile
-    setIsDragging(false)
-    dragStartRef.current = { x: e.clientX, y: e.clientY }
-    ;(e.currentTarget as HTMLElement).setPointerCapture(e.pointerId)
-  }, [isMobile])
-
-  const handlePointerMove = useCallback((e: React.PointerEvent) => {
-    if (!api || !isMobile) return // Only enable drag on mobile
-    const deltaY = e.clientY - dragStartRef.current.y
-    const deltaX = e.clientX - dragStartRef.current.x
-    
-    if (Math.abs(deltaY) > 50 || Math.abs(deltaX) > 50) { // Higher threshold for smoother mobile
-      setIsDragging(true)
-      if (Math.abs(deltaX) > Math.abs(deltaY)) {
-        // Horizontal drag
-        if (deltaX > 50) {
-          api.scrollPrev()
-          dragStartRef.current = { x: e.clientX, y: e.clientY }
-        } else if (deltaX < -50) {
-          api.scrollNext()
-          dragStartRef.current = { x: e.clientX, y: e.clientY }
-        }
-      }
-    }
-  }, [api, isMobile])
-
-  const handlePointerUp = useCallback((e: React.PointerEvent) => {
-    if (!isMobile) return // Only handle on mobile
-    ;(e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId)
-    setTimeout(() => setIsDragging(false), 100)
-  }, [isMobile])
-
   const handleCardClick = useCallback((index: number) => {
     // Desktop: always allow click, Mobile: only if not dragging
-    if ((!isMobile || !isDragging) && api) {
+    if (api) {
       api.scrollTo(index)
     }
-  }, [api, isDragging, isMobile])
+  }, [api])
 
   return (
     <div
@@ -179,7 +141,7 @@ export default function PhotographyCarousel() {
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 overflow-visible max-w-7xl">
         {/* On mobile render a lightweight horizontal scroller to reduce JS and animations */}
         {isMobile ? (
-          <div className="flex gap-4 overflow-x-auto touch-pan-x py-2 -mx-4 px-4 scrollbar-none">
+          <div className="flex gap-4 overflow-x-auto py-2 -mx-4 px-4 scrollbar-none">
             {photos.map((src, i) => (
               <div key={src} className="min-w-[70%] flex-shrink-0 snap-center">
                 <div className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl shadow-md">
@@ -207,10 +169,10 @@ export default function PhotographyCarousel() {
             dragFree: false,
             watchDrag: true,
           }} 
-          className="w-full touch-pan-x" 
+          className="w-full" 
           setApi={setApi}
         >
-          <CarouselContent className="-ml-2 md:-ml-4 touch-pan-x">
+          <CarouselContent className="-ml-2 md:-ml-4">
             {photos.map((src, i) => {
               const isCenter = i === selectedIndex
 

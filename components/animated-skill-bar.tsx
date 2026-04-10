@@ -1,7 +1,8 @@
 "use client"
 
 import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
+import { motion, useInView, useReducedMotion } from "framer-motion"
+import { useEffect, useState } from "react"
 
 interface AnimatedSkillBarProps {
   name: string
@@ -83,20 +84,32 @@ function SkillIcon({ name }: { name: string }) {
 export default function AnimatedSkillBar({ name, index }: AnimatedSkillBarProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const reduceMotion = useReducedMotion()
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
+
+  const shouldReduce = reduceMotion || isMobile
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50, x: index % 2 === 0 ? -50 : 50 }}
-      animate={isInView ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y: 50, x: index % 2 === 0 ? -50 : 50 }}
+      initial={{ opacity: 0, y: shouldReduce ? 8 : 50, x: shouldReduce ? 0 : (index % 2 === 0 ? -50 : 50) }}
+      animate={isInView ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y: shouldReduce ? 8 : 50, x: shouldReduce ? 0 : (index % 2 === 0 ? -50 : 50) }}
       transition={{
-        duration: 0.7,
-        delay: 0.2 + index * 0.1,
-        type: "spring",
-        stiffness: 100,
-        damping: 12,
+        duration: shouldReduce ? 0.25 : 0.7,
+        delay: shouldReduce ? 0 : 0.2 + index * 0.1,
+        type: shouldReduce ? "tween" : "spring",
+        stiffness: shouldReduce ? 0 : 100,
+        damping: shouldReduce ? 0 : 12,
       }}
       className="group"
+      style={{ contentVisibility: "auto", containIntrinsicSize: "84px" }}
     >
       <div className="flex items-center gap-4 rounded-lg bg-secondary/40 p-3">
         <div className="flex h-12 w-12 items-center justify-center rounded-md bg-background text-primary ring-1 ring-primary/10">
@@ -107,7 +120,7 @@ export default function AnimatedSkillBar({ name, index }: AnimatedSkillBarProps)
           className="font-medium"
           initial={{ opacity: 0, x: -8 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -8 }}
-          transition={{ duration: 0.5, delay: 0.3 + index * 0.08 }}
+          transition={{ duration: shouldReduce ? 0.2 : 0.5, delay: shouldReduce ? 0 : 0.3 + index * 0.08 }}
         >
           {name}
         </motion.h3>

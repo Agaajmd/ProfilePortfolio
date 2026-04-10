@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og"
-import { getProjectBySlug } from "@/lib/projects"
+import { getProjectBySlug, resolveProjectImagePath } from "@/lib/projects"
 
 export const size = {
   width: 1200,
@@ -18,6 +18,8 @@ export default async function Image({ params }: Props) {
 
   const title = project?.title ?? "Project"
   const description = project?.description ?? "Nur Jagad Muhammad Dani Portfolio"
+  const projectImage = resolveProjectImagePath(project?.image ?? "/opengraph-image.png")
+  const imageUrl = `https://nurjagadmuhammaddani.vercel.app${encodeURI(projectImage)}`
 
   return new ImageResponse(
     (
@@ -32,6 +34,27 @@ export default async function Image({ params }: Props) {
           fontFamily: "Arial",
         }}
       >
+        <img
+          src={imageUrl}
+          alt={title}
+          width={1200}
+          height={630}
+          style={{
+            position: "absolute",
+            inset: 0,
+            objectFit: "cover",
+            opacity: 0.55,
+          }}
+        />
+
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(135deg, rgba(15,23,42,0.8) 0%, rgba(17,24,39,0.78) 45%, rgba(30,41,59,0.8) 100%)",
+          }}
+        />
+
         <img
           src="https://nurjagadmuhammaddani.vercel.app/Agaaa-logo.png"
           alt="Agaaa logo"
@@ -53,6 +76,8 @@ export default async function Image({ params }: Props) {
             justifyContent: "space-between",
             width: "100%",
             padding: "56px",
+            position: "relative",
+            zIndex: 1,
           }}
         >
           <div
