@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const imageUrl = `https://nurjagadmuhammaddani.vercel.app${encodeURI(project.image)}`
   const pageUrl = `https://nurjagadmuhammaddani.vercel.app/work/${project.slug}`
+  const ogImageUrl = `${pageUrl}/opengraph-image`
 
   return {
     title: `${project.title} | Nur Jagad Muhammad Dani`,
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       images: [
         {
-          url: imageUrl,
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: `${project.title} preview image`,
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: `${project.title} | Nur Jagad Muhammad Dani`,
       description: project.description,
-      images: [imageUrl],
+      images: [ogImageUrl],
     },
   }
 }

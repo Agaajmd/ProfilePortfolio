@@ -46,6 +46,19 @@ export default function ProjectCard({ title, description, image, tags, liveUrl, 
     >
       {/* Full background image */}
       <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] overflow-hidden">
+        <button
+          type="button"
+          className="absolute right-3 top-3 z-20 inline-flex h-9 w-9 items-center justify-center rounded-full bg-black/45 text-white backdrop-blur-sm border border-white/30 sm:hidden"
+          onClick={(e) => {
+            e.stopPropagation()
+            void handleShare()
+          }}
+          aria-label={copied ? t.work.copied : t.work.share}
+          title={copied ? t.work.copied : t.work.share}
+        >
+          <Share2 size={15} />
+        </button>
+
         <Image
           src={image || "/placeholder.svg"}
           alt={title}
@@ -92,25 +105,27 @@ export default function ProjectCard({ title, description, image, tags, liveUrl, 
               href={liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 sm:gap-1.5 rounded-full bg-primary px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-white transition-all duration-150 hover:bg-primary/90 hover:scale-105 active:scale-95 z-10"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary p-0 text-xs font-medium text-white transition-all duration-150 hover:bg-primary/90 active:scale-95 z-10 sm:h-auto sm:w-auto sm:gap-1.5 sm:px-4 sm:py-2 sm:text-sm"
               onClick={(e) => e.stopPropagation()}
+              aria-label={t.work.live}
             >
               <ExternalLink size={14} className="sm:w-4 sm:h-4" />
-              <span>{t.work.live}</span>
+              <span className="hidden sm:inline">{t.work.live}</span>
             </a>
             <a
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 sm:gap-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-white transition-all duration-150 hover:bg-white/30 hover:scale-105 active:scale-95 z-10"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm border border-white/30 p-0 text-xs font-medium text-white transition-all duration-150 hover:bg-white/30 active:scale-95 z-10 sm:h-auto sm:w-auto sm:gap-1.5 sm:px-4 sm:py-2 sm:text-sm"
               onClick={(e) => e.stopPropagation()}
+              aria-label={t.work.code}
             >
               <Github size={14} className="sm:w-4 sm:h-4" />
-              <span>{t.work.code}</span>
+              <span className="hidden sm:inline">{t.work.code}</span>
             </a>
             <button
               type="button"
-              className="inline-flex items-center gap-1 sm:gap-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-white transition-all duration-150 hover:bg-white/30 hover:scale-105 active:scale-95 z-10"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 px-4 py-2 text-sm font-medium text-white transition-all duration-150 hover:bg-white/30 active:scale-95 z-10"
               onClick={(e) => {
                 e.stopPropagation()
                 void handleShare()

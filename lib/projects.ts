@@ -13,7 +13,7 @@ export const projects: ProjectItem[] = [
     slug: "aegix-solutions",
     title: "Aegix Solutions",
     description: "A startup that provides IT solutions and services for businesses, including web development, software development, and digital marketing.",
-    image: "/WORK/Aegix-Solutions.png",
+    image: "/WORK/Aegix-solutions.png",
     tags: ["Next.js", "TypeScript", "Tailwind CSS"],
     liveUrl: "https://aegix-solutions.vercel.app/",
     githubUrl: "https://github.com/agaajmd",
