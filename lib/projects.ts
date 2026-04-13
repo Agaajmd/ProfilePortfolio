@@ -36,12 +36,12 @@ export const projects: ProjectItem[] = [
     githubUrl: "https://github.com/agaajmd",
   },
   {
-    slug: "school-management-system",
-    title: "School Management System",
+    slug: "smart learning ecosystem",
+    title: "Smart Lerning Ecosystem",
     description: "A system for managing school activities such as attendance, grades, and schedules.",
     image: "/WORK/School-management.png",
     tags: ["Next.js", "TypeScript", "Tailwind CSS"],
-    liveUrl: "https://siakad-school-management-system.vercel.app/",
+    liveUrl: "https://aegix-sle.vercel.app/",
     githubUrl: "https://github.com/agaajmd",
   },
   {
