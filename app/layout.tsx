@@ -95,7 +95,8 @@ export default function RootLayout({
               sameAs: [
                 "https://github.com/agaajmd",
                 "https://www.linkedin.com/in/nurjagadmuhammaddani",
-                "https://www.instagram.com/n.agaaa?igsh=MW1yOGhkdmZjNjE3MA=="
+                "https://www.facebook.com/nur.jmd.3",
+                "https://www.instagram.com/n.agaaa"
               ]
             })
           }}

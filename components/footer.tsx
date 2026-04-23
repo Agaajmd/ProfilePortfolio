@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Github, Linkedin, Instagram, Mail } from "lucide-react"
+import { Github, Linkedin, Instagram, Mail, Facebook } from "lucide-react"
 import { useLanguage } from "./language-provider"
 
 export default function Footer() {
@@ -31,6 +31,7 @@ export default function Footer() {
             {[
               { icon: Github, href: "https://github.com/agaajmd", label: "GitHub" },
               { icon: Linkedin, href: "https://www.linkedin.com/in/nurjagadmuhammaddani", label: "LinkedIn" },
+              { icon: Facebook, href: "https://www.facebook.com/nur.jmd.3", label: "Facebook" },
               { icon: Instagram, href: "https://www.instagram.com/n.agaaa", label: "Instagram" },
               { icon: Mail, href: "mailto:n.jagadmd@gmail.com", label: "Email" },
             ].map((item, index) => (
