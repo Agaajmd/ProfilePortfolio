@@ -32,7 +32,7 @@ export const projects: ProjectItem[] = [
     description: "A fullstack game station platform with online booking and station management.",
     image: "/WORK/Aegix-Game-Station.png",
     tags: ["Next.js", "TypeScript", "Tailwind CSS"],
-    liveUrl: "https://aga-game-station.vercel.app/",
+    liveUrl: "https://aegix-game-station.vercel.app/",
     githubUrl: "https://github.com/agaajmd",
   },
   {
